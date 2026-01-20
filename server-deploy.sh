@@ -6,17 +6,18 @@ echo "  AI 辩论平台一键部署脚本"
 echo "================================"
 echo ""
 
-# 检查是否为 root 用户
+# 检查是否有 sudo 权限
+SUDO=""
 if [ "$EUID" -ne 0 ]; then 
-   echo "❌ 请使用 root 用户运行此脚本"
-   exit 1
+   echo "⚠️  非 root 用户，使用 sudo 执行..."
+   SUDO="sudo"
 fi
 
 echo "📦 步骤 1/5: 安装 Docker..."
 if ! command -v docker &> /dev/null; then
-    curl -fsSL https://get.docker.com | sh
-    systemctl start docker
-    systemctl enable docker
+    curl -fsSL https://get.docker.com | $SUDO sh
+    $SUDO systemctl start docker
+    $SUDO systemctl enable docker
     echo "✅ Docker 安装完成"
 else
     echo "✅ Docker 已安装"
@@ -24,7 +25,7 @@ fi
 
 echo ""
 echo "📥 步骤 2/5: 克隆项目..."
-cd /root
+cd ~
 if [ -d "ai-debate" ]; then
     echo "⚠️  目录已存在，删除旧版本..."
     rm -rf ai-debate
@@ -45,11 +46,11 @@ echo "✅ API Keys 已配置"
 
 echo ""
 echo "🐳 步骤 4/5: 构建 Docker 镜像..."
-docker compose build
+$SUDO docker compose build
 
 echo ""
 echo "🚀 步骤 5/5: 启动服务..."
-docker compose up -d
+$SUDO docker compose up -d
 
 echo ""
 echo "⏳ 等待服务启动..."
@@ -61,7 +62,7 @@ echo "  ✅ 部署完成！"
 echo "================================"
 echo ""
 echo "📊 容器状态："
-docker compose ps
+$SUDO docker compose ps
 
 echo ""
 echo "🌐 访问地址："
