@@ -53,6 +53,20 @@ ls -l .env
 
 echo ""
 echo "🐳 步骤 4/5: 构建 Docker 镜像..."
+
+# 检查内存，如果小于 3GB 则添加 Swap
+TOTAL_MEM=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+if [ $TOTAL_MEM -lt 3000000 ]; then
+    echo "⚠️  检测到内存不足 3GB，尝试启用 Swap..."
+    if [ ! -f /swapfile ]; then
+        $SUDO fallocate -l 2G /swapfile
+        $SUDO chmod 600 /swapfile
+        $SUDO mkswap /swapfile
+        $SUDO swapon /swapfile
+        echo "✅ Swap 已启用 (2GB)"
+    fi
+fi
+
 # 显式指定 env-file
 $SUDO docker compose --env-file "$WORK_DIR/.env" build
 
