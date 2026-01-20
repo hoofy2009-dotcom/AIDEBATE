@@ -36,7 +36,7 @@ cd ai-debate
 
 echo ""
 echo "🔑 步骤 3/5: 配置 API Keys..."
-cat > .env.production << 'EOF'
+cat > .env << 'EOF'
 DEEPSEEK_API_KEY=sk-2d3c3b815d454b51b75b963ea8398963
 DASHSCOPE_API_KEY=sk-9b564f6d513c4777a9359f649e9943c2
 VOLCENGINE_API_KEY=c0e03f57-af9f-4343-8273-c3663fe27395
