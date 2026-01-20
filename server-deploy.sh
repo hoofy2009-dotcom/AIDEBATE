@@ -42,15 +42,23 @@ DASHSCOPE_API_KEY=sk-9b564f6d513c4777a9359f649e9943c2
 VOLCENGINE_API_KEY=c0e03f57-af9f-4343-8273-c3663fe27395
 DOUBAO_ENDPOINT_ID=ep-m-20260119234219-sqd59
 EOF
+# 确保所有用户可读
+chmod 644 .env
 echo "✅ API Keys 已配置"
+
+# 获取绝对路径
+WORK_DIR=$(pwd)
+echo "📂 当前工作目录: $WORK_DIR"
+ls -l .env
 
 echo ""
 echo "🐳 步骤 4/5: 构建 Docker 镜像..."
-$SUDO docker compose build
+# 显式指定 env-file
+$SUDO docker compose --env-file "$WORK_DIR/.env" build
 
 echo ""
 echo "🚀 步骤 5/5: 启动服务..."
-$SUDO docker compose up -d
+$SUDO docker compose --env-file "$WORK_DIR/.env" up -d
 
 echo ""
 echo "⏳ 等待服务启动..."
