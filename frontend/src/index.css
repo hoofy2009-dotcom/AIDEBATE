@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 移动端优化 */
+@layer base {
+  /* 禁用移动端双击缩放 */
+  * {
+    touch-action: manipulation;
+  }
+  
+  /* 优化移动端字体 */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  /* 移动端输入框优化 */
+  input[type="text"], 
+  textarea {
+    font-size: 16px !important; /* 防止 iOS 自动缩放 */
+  }
+  
+  /* 移动端按钮优化 */
+  button {
+    min-height: 44px; /* iOS 推荐的最小触摸目标 */
+  }
+}
