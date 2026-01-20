@@ -68,16 +68,16 @@ nano .env.production
 
 填入您的 Keys，然后保存（Ctrl+O, Enter, Ctrl+X）：
 ```env
-DEEPSEEK_API_KEY=sk-your-key-here
-DASHSCOPE_API_KEY=sk-your-key-here
-VOLCENGINE_API_KEY=your-key-here
+DEEPSEEK_API_KEY=sk-2d3c3b815d454b51b75b963ea8398963
+DASHSCOPE_API_KEY=sk-9b564f6d513c4777a9359f649e9943c2
+VOLCENGINE_API_KEY=c0e03f57-af9f-4343-8273-c3663fe27395
 DOUBAO_ENDPOINT_ID=ep-m-20260119234219-sqd59
 ```
 
 ### 第 5 步：一键部署（60秒）
 
 ```bash
-chmod +x deploy.sh && ./deploy.sh
+chmod +x server-deploy.sh && ./server-deploy.sh
 ```
 
 等待 1-2 分钟，看到 "✅ 部署成功！" 即可！
