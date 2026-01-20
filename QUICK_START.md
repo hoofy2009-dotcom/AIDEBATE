@@ -55,7 +55,7 @@ scp -r e:\项目\ai-debate root@你的服务器IP:/root/
 
 在服务器上运行：
 ```bash
-git clone https://github.com/yourusername/ai-debate.git
+git clone https://github.com/hoofy2009-dotcom/AIDEBATE.git ai-debate
 cd ai-debate
 ```
 
