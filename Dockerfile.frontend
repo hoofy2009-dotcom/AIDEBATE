@@ -13,6 +13,8 @@ RUN npm install
 COPY frontend/ .
 
 # 构建生产版本
+# 增加内存限制修复 OOM 问题
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN npm run build
 
 # 生产阶段 - 使用 nginx
